@@ -8,6 +8,8 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
+
+
 if (isset($_SESSION['usuario_id']) && !empty($_SESSION['usuario_id'])) {
     // Verificar si los datos del formulario están presentes
     if (isset($_POST['fecha']) && isset($_POST['hora']) && isset($_POST['servicio'])) {
