@@ -83,7 +83,7 @@ $conn->close();
                             <td><?php echo $cliente['TELEFONO']; ?></td>
                             <td><?php echo $cliente['EMAIL']; ?></td>
                             <td>
-                                <a href="formulariofactura.php" class="btn">Facturación</a>
+                                <a href="formulariofactura.php?id_cliente=<?php echo $cliente['ID_CLIENTE']; ?>" class="btn">Facturación</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
