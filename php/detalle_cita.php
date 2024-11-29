@@ -64,12 +64,12 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de Cita - Juan Mecanico</title>
-    <link rel="stylesheet" href="/Universidad/juan_mecanico/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <header>
     <div class="header-content">
-        <a href="../admin.php"><img src="/Universidad/juan_mecanico/images/con_fondo-removebg-preview (1).png" alt="Logo Juan Mecanico" class="logo"></a>
+        <a href="../admin.php"><img src="../images/con_fondo-removebg-preview (1).png" alt="Logo Juan Mecanico" class="logo"></a>
         <div class="contact-info">Contactanos: 1234-5678 / 5678-1234</div>
         <div class="hours">Horario de atención: lunes a sábado de 8:00 am a 6:00 pm</div>
     </div>
@@ -81,7 +81,7 @@ $conn->close();
             <a href="detalle_cliente.php">Lista de Clientes</a>
             <a href="ver_mecanicos.php">Lista de Mecánicos</a>
             <a href="../registromecanico.html">Registro de Mecánico</a>
-            <a href="logout.php">Cerrar Sesión</a>
+            <a href="../logout.php">Cerrar Sesión</a>
         </div>
     </div>
 </header>

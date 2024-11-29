@@ -62,13 +62,13 @@ $conn->close();
             <a href="detalle_cliente.php">Lista de Clientes</a>
             <a href="ver_mecanicos.php">Lista de Mecánicos</a>
             <a href="../registromecanico.html">Registro de Mecánico</a>
-            <a href="logout.php">Cerrar Sesión</a>
+            <a href="../logout.php">Cerrar Sesión</a>
         </div>
     </div>
 </header>
 
 <main id="home" class="fc-col-header-cell">
-    <h2>Calendario de Citas</h2>
+    <h1 style="text-align:center">Calendario de Citas</h1>
     <div id="calendar"></div>
 </main>
 

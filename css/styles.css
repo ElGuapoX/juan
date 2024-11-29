@@ -37,53 +37,59 @@ header {
 }
 
 /* Dropdown Button */
-
 .dropbtn {
     background-color: #ff7a2d;
     color: white;
-    padding: 22px;
-    font-size: 20px;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
     border: none;
-    z-index: 1001; /* Asegura que el ícono esté sobre otros elementos si es necesario */
-    display: flex; /* Añadir para alinear el texto e ícono horizontalmente */
-    align-items: center; /* Centrar el texto verticalmente */
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el ícono y el texto */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1001;
 }
 
-/* Opcional: Ajustar el tamaño de la fuente del texto "Opciones" si es necesario */
-.dropbtn span {
-    font-size: 20px;
-    margin-left: 10px; /* Espacio entre el ícono y el texto */
+.dropbtn:hover {
+    background-color: #e5681c;
+    transform: scale(1.05); /* Ligero aumento al pasar el mouse */
 }
 
-
-/* The container <div> - needed to position the dropdown content */
+/* The container <div> */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown Content */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    right: 0; /* Cambia de left: 0 a right: 0 */
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    right: 0; /* Alineado al lado derecho */
     z-index: 1;
+    padding: 0.5rem 0;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: #333;
+    padding: 0.75rem 1.5rem;
     text-decoration: none;
     display: block;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #ff7a2d;
+    color: white;
 }
 
 /* Show the dropdown menu on hover */
@@ -91,18 +97,32 @@ header {
     display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: gray;
-}
+/* Optional: Links container for styling flexibility */
 .Enlaces-paginas {
     display: flex;
     justify-content: space-evenly;
     align-items: stretch;
-    gap: 20px;
-    padding: 20px;
+    gap: 1rem;
+    padding: 1rem;
     background-color: white;
 }
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .dropbtn {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
+    }
+
+    .dropdown-content a {
+        font-size: 0.9rem;
+    }
+}
+
 
 .Enlace {
     display: flex;
@@ -964,6 +984,17 @@ table .btn:hover {
 	margin-right: 35rem;
 }
 
+.btn-resgitroauto:hover{
+    background-color: #079cff; /* Cambia a un tono aún más oscuro en clic */
+    transform: scale(1.05); /* Restaura el tamaño al presionar */
+}
+
+.btn-resgitroauto:active{
+    background-color: #1f78ff; /* Cambia a un tono aún más oscuro en clic */
+    transform: scale(1); /* Restaura el tamaño al presionar */
+}
+
+
 /* Botón al pasar el ratón */
 .btn:hover {
     background-color: #0056b3; /* Color más oscuro en hover */
@@ -983,4 +1014,33 @@ table .btn:hover {
 
 /* Asegura que los botones sean accesibles en dispositivos pequeños */
 .btn {
-    width: auto; /* Ajuste
+    width: auto; 
+}
+
+.submit-button {
+    display: block;
+    margin: 20px auto;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049; /* Cambia a un tono más oscuro en hover */
+    transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+.submit-button:active {
+    background-color: #388E3C; /* Cambia a un tono aún más oscuro en clic */
+    transform: scale(1); /* Restaura el tamaño al presionar */
+}
+
+

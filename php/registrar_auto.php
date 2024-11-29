@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("issss", $id_cliente, $modelo, $matricula, $marca, $color);
 
     if ($stmt->execute()) {
-        header("Location: detalle_cliente.php?id=$id_cliente");
+        header("Location: ver_cliente.php?id=$id_cliente");
         exit;
     } else {
         $error = "Error al registrar el automóvil: " . $conn->error;
@@ -76,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="color">Color:</label>
         <input type="text" id="color" name="color">
         
-        <input type="submit" name="botonguardar" value="Registrar Automóvil">
+        <input type="submit" name="botonguardar" value="Registrar Automóvil" class="submit-button">
     </form>
-	<a href="ver_cliente.php?id=<?php echo $id_cliente; ?>" class="btn-resgitroauto">Cancelar</a>
+    <a href="ver_cliente.php?id=<?php echo $id_cliente; ?>" class="btn-resgitroauto">Cancelar</a>
 </section>
 </main>
 </body>

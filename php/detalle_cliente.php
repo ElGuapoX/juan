@@ -13,8 +13,8 @@ $user_id = $_SESSION['usuario_id'];
 $db = new Database();
 $conn = $db->connect();
 
-// Consulta para obtener todos los clientes registrados
-$query_todos_clientes = "SELECT ID_CLIENTE, NOMBRE, APELLIDO, TELEFONO, EMAIL FROM CLIENTE";
+// Consulta para obtener todos los clientes registrados, excluyendo administradores
+$query_todos_clientes = "SELECT ID_CLIENTE, NOMBRE, APELLIDO, TELEFONO, EMAIL FROM CLIENTE WHERE ROL != 'administrador'";
 $result_todos_clientes = $conn->query($query_todos_clientes);
 $todos_clientes = [];
 
@@ -52,14 +52,14 @@ $conn->close();
             <a href="detalle_cliente.php">Lista de Clientes</a>
             <a href="ver_mecanicos.php">Lista de Mecánicos</a>
             <a href="../registromecanico.html">Registro de Mecánico</a>
-            <a href="logout.php">Cerrar Sesión</a>
+            <a href="../logout.php">Cerrar Sesión</a>
         </div>
     </div>
 </header>
 
 <main id="home" class="main-detallecliente">
     <body id="home" class="padding-container">
-    <a href="javascript:history.back()" class="back-arrow">Volver</a>
+    <a href="../admin.php" class="back-arrow">Volver</a>
     <h2>Lista de Clientes</h2>
     <div class="table-container">
         <?php if (count($todos_clientes) > 0): ?>
