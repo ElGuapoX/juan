@@ -68,6 +68,15 @@ setcookie('ultima_sesion', date('d-m-Y H:i:s'), time() + (86400 * 30), "/"); // 
                 </div>
             </div>
         </div>
+        <div class="prueba" style="background-image: url('images/facturacion.jpg');">
+            <div class="hero-content">
+                <h2>Facturas</h2>
+                <p>Aquí podrá realizar facturas para los clientes</p>
+                <div class="button-container">
+                    <a href="php/facturacion.php" class="hero-button">Facturacion</a>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 
