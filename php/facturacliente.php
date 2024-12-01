@@ -20,6 +20,22 @@ $stmt_facturas->bind_param('i', $id_cliente);
 $stmt_facturas->execute();
 $result_facturas = $stmt_facturas->get_result();
 
+// Consulta para comentarios
+$query_comentarios = "SELECT ID_FACTURA, COMENTARIO, FECHA FROM COMENTARIO_FACTURA WHERE ID_FACTURA IN (
+    SELECT ID_FACTURA FROM FACTURA WHERE ID_CLIENTE = ?
+)";
+$stmt_comentarios = $conn->prepare($query_comentarios);
+$stmt_comentarios->bind_param('i', $id_cliente);
+$stmt_comentarios->execute();
+$result_comentarios = $stmt_comentarios->get_result();
+
+// Organizar comentarios en un arreglo
+$comentarios_por_factura = [];
+while ($comentario = $result_comentarios->fetch_assoc()) {
+    $comentarios_por_factura[$comentario['ID_FACTURA']][] = $comentario;
+}
+
+
 $conn->close();
 ?>
 
@@ -58,18 +74,38 @@ $conn->close();
                 <tr>
                     <th>ID Factura</th>
                     <th>Fecha</th>
+                    <th>Costo</th>
+                    <th>Impuesto</th>
                     <th>Monto Total</th>
+                    <th>Comentarios</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($factura = $result_facturas->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($factura['ID_FACTURA']); ?></td>
-                        <td><?php echo htmlspecialchars($factura['FECHA_EMISION']); ?></td>
-                        <td><?php echo htmlspecialchars($factura['TOTAL']); ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
+    <?php while ($factura = $result_facturas->fetch_assoc()): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($factura['ID_FACTURA']); ?></td>
+            <td><?php echo htmlspecialchars($factura['FECHA_EMISION']); ?></td>
+            <td><?php echo htmlspecialchars($factura['IMPORTE']); ?></td>
+            <td><?php echo htmlspecialchars($factura['IMPUESTO']); ?></td>
+            <td><?php echo htmlspecialchars($factura['TOTAL']); ?></td>
+            <td>
+                <?php if (!empty($comentarios_por_factura[$factura['ID_FACTURA']])): ?>
+                    <ul>
+                        <?php foreach ($comentarios_por_factura[$factura['ID_FACTURA']] as $comentario): ?>
+                            <li>
+                                <?php echo htmlspecialchars($comentario['COMENTARIO']); ?>
+                                <br><small><i><?php echo htmlspecialchars($comentario['FECHA']); ?></i></small>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    Sin comentarios
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</tbody>
+
         </table>
     <?php else: ?>
         <p>No se encontraron facturas para este cliente.</p>

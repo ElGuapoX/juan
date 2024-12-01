@@ -11,20 +11,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $importe = (float)$_POST['importe'];
     $impuesto = (float)$_POST['impuesto'];
     $total = $importe + $impuesto;
+    $comentario = trim($_POST['comentario']);
 
+    // Insertar en la tabla FACTURA
+    $query_factura = "INSERT INTO FACTURA (ID_CLIENTE, FECHA_EMISION, IMPORTE, IMPUESTO, TOTAL) VALUES (?, ?, ?, ?, ?)";
+    $stmt_factura = $conn->prepare($query_factura);
+    $stmt_factura->bind_param("isddd", $id_cliente, $fecha_emision, $importe, $impuesto, $total);
 
-    $query = "INSERT INTO FACTURA (ID_CLIENTE, FECHA_EMISION, IMPORTE, IMPUESTO, TOTAL) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("isddd", $id_cliente, $fecha_emision, $importe, $impuesto, $total);
+    if ($stmt_factura->execute()) {
+        $id_factura = $stmt_factura->insert_id; // Obtener el ID de la factura recién creada
 
-    if ($stmt->execute()) {
+        // Insertar comentario si existe
+        if (!empty($comentario)) {
+            $query_comentario = "INSERT INTO COMENTARIO_FACTURA (ID_FACTURA, COMENTARIO) VALUES (?, ?)";
+            $stmt_comentario = $conn->prepare($query_comentario);
+            $stmt_comentario->bind_param("is", $id_factura, $comentario);
+
+            if (!$stmt_comentario->execute()) {
+                $error = "Error al registrar el comentario: " . $conn->error;
+            }
+
+            $stmt_comentario->close();
+        }
+
         header("Location: facturacion.php?success=true");
         exit;
     } else {
         $error = "Error al registrar la factura: " . $conn->error;
     }
 
-    $stmt->close();
+    $stmt_factura->close();
     $conn->close();
 } else {
     $id_cliente = isset($_GET['id_cliente']) ? (int)$_GET['id_cliente'] : 0;
@@ -63,6 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="impuesto">Impuesto:</label>
             <input type="number" step="0.01" id="impuesto" name="impuesto" required>
+
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" rows="4" placeholder="Agrega un comentario opcional..."></textarea>
 
             <input type="submit" name="botonguardar" value="Registrar Factura">
         </form>
