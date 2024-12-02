@@ -71,7 +71,7 @@ $conn->close();
             <div class="info-card"><strong>Email:</strong> <?php echo htmlspecialchars($cliente['EMAIL']); ?></div>
             <div class="info-card"><strong>Teléfono:</strong> <?php echo htmlspecialchars($cliente['TELEFONO']); ?></div>
             <div class="info-card"><strong>Fecha de Creación:</strong> <?php echo htmlspecialchars($cliente['FECHA_CREACION']); ?></div>
-            <div class="info-card"><strong>Última Sesión:</strong> <?php echo htmlspecialchars($cliente['ULTIMA_SESION']); ?></div>
+            <div class="info-card"><strong>Ultima Sesion:</strong> <?php echo htmlspecialchars($cliente['ULTIMA_SESION']); ?></div>
         </div>
 </section>
 <h2>Automóviles Registrados</h2>

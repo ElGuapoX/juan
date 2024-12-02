@@ -59,7 +59,7 @@ setcookie('ultima_sesion', date('d-m-Y H:i:s'), time() + (86400 * 30), "/"); // 
        
             </div>
         </section>
-        <a href="php/facturacliente.php">Mis Facturas</a>
+        <a href="php/facturacliente.php" class="hero-button">Mis Facturas</a>
 </main>
 
 <section class="carousel">

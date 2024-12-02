@@ -67,12 +67,12 @@ $conn->close();
     </div>
 </header>
 <main>
+    <a href="../home.php" class="btn">Volver</a>
     <h1>Facturas del Cliente</h1>
     <?php if ($result_facturas->num_rows > 0): ?>
         <table>
             <thead>
                 <tr>
-                    <th>ID Factura</th>
                     <th>Fecha</th>
                     <th>Costo</th>
                     <th>Impuesto</th>
@@ -83,7 +83,6 @@ $conn->close();
             <tbody>
     <?php while ($factura = $result_facturas->fetch_assoc()): ?>
         <tr>
-            <td><?php echo htmlspecialchars($factura['ID_FACTURA']); ?></td>
             <td><?php echo htmlspecialchars($factura['FECHA_EMISION']); ?></td>
             <td><?php echo htmlspecialchars($factura['IMPORTE']); ?></td>
             <td><?php echo htmlspecialchars($factura['IMPUESTO']); ?></td>
@@ -110,7 +109,6 @@ $conn->close();
     <?php else: ?>
         <p>No se encontraron facturas para este cliente.</p>
     <?php endif; ?>
-    <a href="detalle_cliente.php" class="btn">Volver</a>
 </main>
 <footer>
     <p>Todos los derechos reservados © Universidad Tecnológica de Panamá 2024</p>
